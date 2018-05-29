@@ -1,7 +1,7 @@
 #include "generator.h"
 #include <string.h>
 
-Generator::Generator()
+Generator::Generator(QObject *parent) : QObject(parent)
 {
 
 }

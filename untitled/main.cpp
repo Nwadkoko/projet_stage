@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
 
     engine.rootContext()->setContextProperty("connectionGen", &connectionGen);
     engine.rootContext()->setContextProperty("connectionCom", &connectionCom);
+    engine.rootContext()->setContextProperty("monAmp", &monAmp);
+    engine.rootContext()->setContextProperty("monGen", &monGen);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;

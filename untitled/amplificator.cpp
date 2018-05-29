@@ -1,11 +1,35 @@
 #include "amplificator.h"
 
-Amplificator::Amplificator()
+Amplificator::Amplificator(QObject *parent) : QObject(parent)
 {
     int y=0;
     int i=0;
     char* buffer_r;
     char data[5];
+}
+
+void Amplificator::setValueChannel(int value, int channel)
+{
+    switch(channel) {
+    case 1: m_valC1 = value; break;
+    case 2: m_valC2 = value; break;
+    case 3: m_valC3 = value; break;
+    case 4: m_valC4 = value; break;
+    case 5: m_valC5 = value; break;
+    case 6: m_valC6 = value; break;
+    }
+}
+
+int Amplificator::getValueChannel(int channel)
+{
+    switch(channel) {
+    case 1: return m_valC1;
+    case 2: return m_valC2;
+    case 3: return m_valC3;
+    case 4: return m_valC4;
+    case 5: return m_valC5;
+    case 6: return m_valC6;
+    }
 }
 
 QString Amplificator::ping()
@@ -116,6 +140,11 @@ QString Amplificator::commutation(int sortie, QString voie)
         m_trame += "1";
     }
     return(m_trame);
+}
+
+char *Amplificator::puissanceChar(QString puissance)
+{
+    return const_cast<char*>(puissance.toStdString().c_str());
 }
 
 Amplificator::~Amplificator()

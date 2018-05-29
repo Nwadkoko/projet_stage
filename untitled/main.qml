@@ -268,7 +268,7 @@ Window {
         width: 1280
         height: 720
         color: "#444444"
-        visible: true
+        visible: false
 
         Text {
             id: textSetFrequency
@@ -329,6 +329,8 @@ Window {
             width: 140
             height: 30
             font.pixelSize: 16
+            //model: ["700 MHz", "900 MHz", "1800 MHz", "2170 MHz", "2450 MHz", "2700 MHz"]
+            onCurrentTextChanged: console.debug(currentText)
             /*model: ListModel {
                 id: cbItems
                 ListElement { text: "700 MHz"}
@@ -605,6 +607,96 @@ Window {
             id: statusIndicatorEmission
             x: 128
             y: 301
+        }
+
+        Button {
+            id: buttonValidate
+            x: 704
+            y: 397
+            width: 178
+            height: 40
+            text: qsTr("Validate")
+            onClicked: {
+                if(checkBoxC1CA.checked){
+                    connectionCom.writeData(monAmp.puissanceChar(monAmp.puissance(spinBoxC1.value, 1)), 10);
+                }else {}
+
+
+                connectionCom.writeData(monAmp.puissanceChar(monAmp.puissance(spinBoxC2.value, 2)), 10);
+                console.debug(monAmp.commutation(1, 'A'));
+               /* console.debug(monAmp.puissance(spinBoxC1.value, 1));
+                console.debug(monAmp.puissance(spinBoxC2.value, 2));
+                console.debug(monAmp.puissance(spinBoxC3.value, 3));
+                console.debug(monAmp.puissance(spinBoxC4.value, 4));
+                console.debug(monAmp.puissance(spinBoxC5.value, 5));
+                console.debug(monAmp.puissance(spinBoxC6.value, 6));*/
+            }
+        }
+
+        Text {
+            id: textMwC1
+            x: 608
+            y: 114
+            width: 64
+            height: 18
+            color: "#ffffff"
+            text: qsTr("")
+            font.pixelSize: 14
+        }
+
+        Text {
+            id: textMwC2
+            x: 978
+            y: 114
+            width: 64
+            height: 18
+            color: "#ffffff"
+            text: qsTr("")
+            font.pixelSize: 14
+        }
+
+        Text {
+            id: textMwC3
+            x: 608
+            y: 228
+            width: 64
+            height: 18
+            color: "#ffffff"
+            text: qsTr("")
+            font.pixelSize: 14
+        }
+
+        Text {
+            id: textMwC4
+            x: 978
+            y: 228
+            width: 64
+            height: 18
+            color: "#ffffff"
+            text: qsTr("")
+            font.pixelSize: 14
+        }
+
+        Text {
+            id: textMwC5
+            x: 608
+            y: 336
+            width: 64
+            height: 18
+            color: "#ffffff"
+            text: qsTr("")
+            font.pixelSize: 14
+        }
+
+        Text {
+            id: textMwC6
+            x: 978
+            y: 336
+            width: 64
+            height: 18
+            color: "#ffffff"
+            text: qsTr("")
+            font.pixelSize: 14
         }
 
     }
