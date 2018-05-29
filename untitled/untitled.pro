@@ -14,7 +14,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    connection.cpp
+    connection.cpp \
+    generator.cpp \
+    amplificator.cpp
 
 RESOURCES += qml.qrc
 
@@ -30,7 +32,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    connection.h
+    connection.h \
+    generator.h \
+    amplificator.h
 
 unix|win32: LIBS += -lWS2_32
 

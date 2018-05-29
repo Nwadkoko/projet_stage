@@ -4,6 +4,8 @@
 #include <QQmlEngine>
 #include <QQmlContext>
 #include <connection.h>
+#include <amplificator.h>
+#include <generator.h>
 
 int main(int argc, char *argv[])
 {
@@ -11,6 +13,9 @@ int main(int argc, char *argv[])
 
     Connection connectionGen;
     Connection connectionCom;
+
+    Amplificator monAmp;
+    Generator monGen;
 
     QGuiApplication app(argc, argv);
 

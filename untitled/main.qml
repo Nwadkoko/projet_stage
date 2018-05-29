@@ -1,8 +1,8 @@
 import QtQuick 2.9
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.3
-
 import QtQuick.Controls.Styles 1.4
+import QtQuick.Extras 1.4
 
 Window {
     width: 1280
@@ -268,7 +268,7 @@ Window {
         width: 1280
         height: 720
         color: "#444444"
-        visible: false
+        visible: true
 
         Text {
             id: textSetFrequency
@@ -323,7 +323,7 @@ Window {
         }
 
         ComboBox {
-            id: comboBox
+            id: comboBoxFrequencyBand
             x: 211
             y: 158
             width: 140
@@ -337,14 +337,22 @@ Window {
                 ListElement { text: "2170 MHz"}
                 ListElement { text: "2450 MHz"}
                 ListElement { text: "2700 MHz"}
-            }*/
-            onCurrentIndexChanged: console.debug(cbItems.get(currentIndex).text)
+            }
+            onAccepted: {
+                if(find(currentText) === -1){
+                    cbItems.append({text: editText})
+                    currentIndex = find(editText)
+                }
+            }
+
+            onCurrentIndexChanged: console.debug(cbItems.get(currentIndex).text)*/
         }
 
         SpinBox {
             id: spinBoxC1
             x: 570
             y: 68
+            font.pointSize: 12
             to: 4095
             editable: true
         }
@@ -405,7 +413,8 @@ Window {
         SpinBox {
             id: spinBoxC2
             x: 940
-            y: 69
+            y: 68
+            font.pointSize: 12
             to: 4095
         }
 
@@ -457,12 +466,147 @@ Window {
             id: text3
             x: 483
             y: 79
+            width: 75
+            height: 25
+            color: "#ffffff"
+            text: qsTr("Channel 1")
+            lineHeight: 0.9
+            font.pixelSize: 16
+        }
+
+        Text {
+            id: text9
+            x: 483
+            y: 192
             width: 72
             height: 20
             color: "#ffffff"
-            text: qsTr("Channel 1")
+            text: qsTr("Channel 3")
             font.pixelSize: 16
         }
+
+        Text {
+            id: text10
+            x: 859
+            y: 192
+            width: 72
+            height: 20
+            color: "#ffffff"
+            text: qsTr("Channel 4")
+            font.pixelSize: 16
+        }
+
+        SpinBox {
+            id: spinBoxC3
+            x: 570
+            y: 182
+            font.pointSize: 12
+            to: 4095
+            editable: true
+        }
+
+        SpinBox {
+            id: spinBoxC4
+            x: 940
+            y: 182
+            font.pointSize: 12
+            to: 4095
+            editable: true
+        }
+
+        Text {
+            id: text11
+            x: 483
+            y: 300
+            width: 72
+            height: 20
+            color: "#ffffff"
+            text: qsTr("Channel 5")
+            font.pixelSize: 16
+        }
+
+        SpinBox {
+            id: spinBoxC5
+            x: 570
+            y: 290
+            font.pointSize: 12
+            to: 4095
+            editable: true
+        }
+
+        Text {
+            id: text12
+            x: 859
+            y: 300
+            width: 72
+            height: 20
+            color: "#ffffff"
+            text: qsTr("Channel 6")
+            font.pixelSize: 16
+        }
+
+        SpinBox {
+            id: spinBoxC6
+            x: 940
+            y: 290
+            font.pointSize: 12
+            to: 4095
+            editable: true
+        }
+
+        StatusIndicator {
+            id: statusIndicatorC3
+            x: 505
+            y: 218
+        }
+
+        StatusIndicator {
+            id: statusIndicatorC1
+            x: 505
+            y: 106
+        }
+
+        StatusIndicator {
+            id: statusIndicatorC2
+            x: 882
+            y: 106
+        }
+
+        StatusIndicator {
+            id: statusIndicatorC4
+            x: 882
+            y: 218
+        }
+
+        StatusIndicator {
+            id: statusIndicatorC5
+            x: 505
+            y: 326
+        }
+
+        StatusIndicator {
+            id: statusIndicatorC6
+            x: 882
+            y: 326
+        }
+
+        Text {
+            id: text13
+            x: 56
+            y: 303
+            width: 66
+            height: 19
+            color: "#ffffff"
+            text: qsTr("Emission")
+            font.pixelSize: 16
+        }
+
+        StatusIndicator {
+            id: statusIndicatorEmission
+            x: 128
+            y: 301
+        }
+
     }
 
 
