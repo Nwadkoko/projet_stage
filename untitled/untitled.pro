@@ -14,9 +14,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
+    amplificator.cpp \
     connection.cpp \
     generator.cpp \
-    amplificator.cpp
+
 
 RESOURCES += qml.qrc
 
@@ -34,8 +35,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     connection.h \
     generator.h \
-    amplificator.h
+    amplificator.h \
 
 unix|win32: LIBS += -lWS2_32
 
 RC_FILE = myicon.rc
+
+DISTFILES += \
+    pics/Screenshot_ANAPICO.png

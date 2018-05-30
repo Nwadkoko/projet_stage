@@ -31,6 +31,17 @@ Window {
             height: 55
             text: qsTr("Send")
             font.pointSize: 13
+            onHoveredChanged: {
+                if(sendButton.hovered)
+                {
+                    ToolTip.visible = true;
+                    ToolTip.text = "send";
+                }else
+                {
+                    ToolTip.visible = false;
+
+                }
+            }
             onClicked: {
                 connectionGen.setIpAddress(textEditIpAddressGen.text);
                 connectionGen.setPort(textEditPortGen.text);
@@ -330,8 +341,7 @@ Window {
             height: 30
             font.pixelSize: 16
             //model: ["700 MHz", "900 MHz", "1800 MHz", "2170 MHz", "2450 MHz", "2700 MHz"]
-            onCurrentTextChanged: console.debug(currentText)
-            /*model: ListModel {
+            model: ListModel {
                 id: cbItems
                 ListElement { text: "700 MHz"}
                 ListElement { text: "900 MHz"}
@@ -347,7 +357,7 @@ Window {
                 }
             }
 
-            onCurrentIndexChanged: console.debug(cbItems.get(currentIndex).text)*/
+            onCurrentIndexChanged: console.debug(cbItems.get(currentIndex).text)
         }
 
         SpinBox {
@@ -358,6 +368,7 @@ Window {
             to: 4095
             editable: true
         }
+
 
         CheckBox {
             id: checkBoxC1CA
@@ -566,6 +577,7 @@ Window {
             id: statusIndicatorC1
             x: 505
             y: 106
+            active: false
         }
 
         StatusIndicator {
@@ -595,7 +607,7 @@ Window {
         Text {
             id: text13
             x: 56
-            y: 303
+            y: 242
             width: 66
             height: 19
             color: "#ffffff"
@@ -605,8 +617,8 @@ Window {
 
         StatusIndicator {
             id: statusIndicatorEmission
-            x: 128
-            y: 301
+            x: 131
+            y: 242
         }
 
         Button {
@@ -617,14 +629,19 @@ Window {
             height: 40
             text: qsTr("Validate")
             onClicked: {
-                if(checkBoxC1CA.checked){
-                    connectionCom.writeData(monAmp.puissanceChar(monAmp.puissance(spinBoxC1.value, 1)), 10);
-                }else {}
+                //                if(checkBoxC1CA.checked){
+                //                    connectionCom.writeData(monAmp.puissanceChar(monAmp.puissance(spinBoxC1.value, 1)), 10);
+                //                }else {}
+
+                if(spinBoxC1.value > 0)
+                {
+                    statusIndicatorC1.active = true;
+                }
 
 
                 connectionCom.writeData(monAmp.puissanceChar(monAmp.puissance(spinBoxC2.value, 2)), 10);
                 console.debug(monAmp.commutation(1, 'A'));
-               /* console.debug(monAmp.puissance(spinBoxC1.value, 1));
+                /* console.debug(monAmp.puissance(spinBoxC1.value, 1));
                 console.debug(monAmp.puissance(spinBoxC2.value, 2));
                 console.debug(monAmp.puissance(spinBoxC3.value, 3));
                 console.debug(monAmp.puissance(spinBoxC4.value, 4));
@@ -697,6 +714,71 @@ Window {
             color: "#ffffff"
             text: qsTr("")
             font.pixelSize: 14
+        }
+
+        Text {
+            id: text14
+            x: 76
+            y: 607
+            color: "#ffffff"
+            text: qsTr("Channel 1")
+            font.pixelSize: 14
+        }
+
+        Text {
+            id: text15
+            x: 227
+            y: 607
+            color: "#ffffff"
+            text: qsTr("Channel 2")
+            font.pixelSize: 14
+        }
+
+        Text {
+            id: text16
+            x: 380
+            y: 607
+            color: "#ffffff"
+            text: qsTr("Channel 3")
+            font.pixelSize: 14
+        }
+
+        Text {
+            id: text17
+            x: 530
+            y: 607
+            color: "#ffffff"
+            text: qsTr("Channel 4")
+            font.pixelSize: 14
+        }
+
+        Text {
+            id: text18
+            x: 685
+            y: 607
+            color: "#ffffff"
+            text: qsTr("Channel 5")
+            font.pixelSize: 14
+        }
+
+        Text {
+            id: text19
+            x: 842
+            y: 607
+            color: "#ffffff"
+            text: qsTr("Channel 6")
+            font.pixelSize: 14
+        }
+
+        Text {
+            id: text20
+            x: 962
+            y: 649
+            width: 41
+            height: 26
+            color: "#ffffff"
+            text: qsTr("V/m")
+            font.pixelSize: 20
         }
 
     }

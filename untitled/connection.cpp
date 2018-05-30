@@ -6,8 +6,8 @@ Connection::Connection(QObject *parent) : QObject(parent)
     m_iResult=WSAStartup(MAKEWORD(2,2), &m_wsaData);
     if(m_iResult != 0)
     {
-     printf("WSAStartup failed with error: %d\n", m_iResult);
-     exit(1);
+        printf("WSAStartup failed with error: %d\n", m_iResult);
+        exit(1);
     }
 }
 
