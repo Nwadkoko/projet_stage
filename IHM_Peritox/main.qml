@@ -22,11 +22,15 @@ Window {
         height: 720
         color: "#444444"
         visible: true
+        anchors.right: parent.right
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
 
         Button {
             id: sendButton
-            x: 587
-            y: 491
+            anchors.bottom: progressBar.top
+            anchors.horizontalCenter: parent.horizontalCenter
             width: 109
             height: 55
             text: qsTr("Send")
@@ -75,10 +79,11 @@ Window {
 
         Item {
             id: itemGenConfig
-            x: 134
-            y: 179
-            width: 373
-            height: 218
+            x: 0
+            width: 370
+            height: 220
+            anchors.left: parent.leftMargins
+            anchors.verticalCenter: parent.verticalCenter
 
             Text {
                 id: textGeneratorConfig
@@ -185,10 +190,10 @@ Window {
 
         Item {
             id: itemComConfig
-            x: 747
-            y: 179
-            width: 367
-            height: 218
+            width: 370
+            height: 220
+            anchors.right: parent.right
+            anchors.verticalCenter: parent.verticalCenter
 
             Text {
                 id: textComConfig
@@ -270,12 +275,12 @@ Window {
 
         ProgressBar {
             id: progressBar
-            x: 365
-            y: 614
             width: 552
             height: 56
             indeterminate: true
             value: 0
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
         }
 
         Rectangle {
