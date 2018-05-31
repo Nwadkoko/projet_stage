@@ -21,6 +21,7 @@ public slots:
     void setIpAddress(QString newIpAddress);
     QString getPort();
     void setPort(QString newPort);
+    int connection();
     int connection(unsigned short port, char *serverName);
     void readData(char *data, long maxlen);
     void writeData(char *data, long maxlen);

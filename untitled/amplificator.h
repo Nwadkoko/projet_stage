@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QDebug>
 #include <QQmlEngine>
+#include <vector>
 
 
 class Amplificator : public QObject
@@ -14,7 +15,7 @@ public:
     ~Amplificator();
 
 public slots:
-    void setValueChannel(int value, int channel);
+    void setValueChannel(float value, int channel);
     int getValueChannel(int channel);
     QString ping();
     char *lecture(int sortie);
@@ -29,7 +30,7 @@ private:
     QString m_trame;
     const char* m_trameValSortie;
     char* m_trameValSortieChar;
-    int m_valC1, m_valC2, m_valC3, m_valC4, m_valC5, m_valC6;
+    int m_valChannel[6];
 };
 
 #endif // AMPLIFICATOR_H

@@ -49,6 +49,13 @@ Window {
                 connectionCom.setPort(textEditPortCom.text);
                 rectangle.visible = false;
                 rectangle1.visible = true;
+                /*if(connectionCom.connection() === 0 && connectionGen.connection() === 0)
+                {
+                    rectangle.visible = false;
+                    rectangle1.visible = true;
+                }else rectangleConnectionFailed.visible = true;*/
+
+
             }
         }
 
@@ -270,6 +277,30 @@ Window {
             indeterminate: true
             value: 0
         }
+
+        Rectangle {
+            id: rectangleConnectionFailed
+            x: 540
+            y: 201
+            width: 200
+            height: 200
+            color: "#444444"
+            visible: false
+
+            TextArea {
+                id: textArea
+                x: -80
+                y: 45
+                width: 297
+                height: 59
+                text: "Une erreur est survenue lors de la connexion, \n" +
+                      "veuillez vérifier l'état des câbles et les adresses.";
+                visible: true
+                font.pixelSize: 14
+                color: "#ffffff"
+                readOnly: true;
+            }
+        }
     }
 
     Rectangle {
@@ -341,7 +372,7 @@ Window {
             height: 30
             font.pixelSize: 16
             //model: ["700 MHz", "900 MHz", "1800 MHz", "2170 MHz", "2450 MHz", "2700 MHz"]
-            model: ListModel {
+            /*model: ListModel {
                 id: cbItems
                 ListElement { text: "700 MHz"}
                 ListElement { text: "900 MHz"}
@@ -349,7 +380,7 @@ Window {
                 ListElement { text: "2170 MHz"}
                 ListElement { text: "2450 MHz"}
                 ListElement { text: "2700 MHz"}
-            }
+            }*/
             onAccepted: {
                 if(find(currentText) === -1){
                     cbItems.append({text: editText})
@@ -629,24 +660,37 @@ Window {
             height: 40
             text: qsTr("Validate")
             onClicked: {
-                //                if(checkBoxC1CA.checked){
-                //                    connectionCom.writeData(monAmp.puissanceChar(monAmp.puissance(spinBoxC1.value, 1)), 10);
-                //                }else {}
 
-                if(spinBoxC1.value > 0)
-                {
-                    statusIndicatorC1.active = true;
+                monAmp.setValueChannel(spinBoxC1.value,1);
+                monAmp.setValueChannel(spinBoxC2.value,2);
+                monAmp.setValueChannel(spinBoxC3.value,3);
+                monAmp.setValueChannel(spinBoxC4.value,4);
+                monAmp.setValueChannel(spinBoxC5.value,5);
+                monAmp.setValueChannel(spinBoxC6.value,6);
+
+                console.debug(monAmp.getValueChannel(1));
+                console.debug(monAmp.getValueChannel(2));
+                console.debug(monAmp.getValueChannel(3));
+                console.debug(monAmp.getValueChannel(4));
+                console.debug(monAmp.getValueChannel(5));
+                console.debug(monAmp.getValueChannel(6));
+
+                console.debug(monAmp.puissance(monAmp.getValueChannel(1), 1));
+                console.debug(monAmp.puissance(monAmp.getValueChannel(2), 2));
+                console.debug(monAmp.puissance(monAmp.getValueChannel(3), 3));
+                console.debug(monAmp.puissance(monAmp.getValueChannel(4), 4));
+                console.debug(monAmp.puissance(monAmp.getValueChannel(5), 5));
+                console.debug(monAmp.puissance(monAmp.getValueChannel(6), 6));
+
+                if(checkBoxC1CA.checked){
+                    console.debug(monAmp.commutation(1, 'A'));
+                }else if(checkBoxC1CB.checked){
+                    console.debug(monAmp.commutation(1, 'B'));
+                }else if(checkBoxC2CA.checked){
+                    console.debug(monAmp.commutation(2, 'A'));
+                }else if(checkBoxC2CB.checked){
+                    console.debug(monAmp.commutation(2, 'B'))
                 }
-
-
-                connectionCom.writeData(monAmp.puissanceChar(monAmp.puissance(spinBoxC2.value, 2)), 10);
-                console.debug(monAmp.commutation(1, 'A'));
-                /* console.debug(monAmp.puissance(spinBoxC1.value, 1));
-                console.debug(monAmp.puissance(spinBoxC2.value, 2));
-                console.debug(monAmp.puissance(spinBoxC3.value, 3));
-                console.debug(monAmp.puissance(spinBoxC4.value, 4));
-                console.debug(monAmp.puissance(spinBoxC5.value, 5));
-                console.debug(monAmp.puissance(spinBoxC6.value, 6));*/
             }
         }
 

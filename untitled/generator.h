@@ -13,9 +13,9 @@ public:
     ~Generator();
 
 public slots:
-    void SetOnOff(char *buffer, int *maxlen, int *flag);
-    void GetFreq(char *buffer, int *maxlen);
-    void SetFreq(char *buffer, int *maxlen, char *freq);
+    void setOnOff(char *buffer, int *maxlen, int *flag);
+    void getFreq(char *buffer, int *maxlen);
+    void setFreq(char *buffer, int *maxlen, char *freq);
 };
 
 #endif // GENERATOR_H

@@ -6,7 +6,7 @@ Generator::Generator(QObject *parent) : QObject(parent)
 
 }
 
-void Generator::SetOnOff(char *buffer, int *maxlen, int *flag)
+void Generator::setOnOff(char *buffer, int *maxlen, int *flag)
 {
     if(*flag==0)
     {
@@ -21,12 +21,12 @@ void Generator::SetOnOff(char *buffer, int *maxlen, int *flag)
     *maxlen=strlen(buffer);
 }
 
-void Generator::GetFreq(char *buffer, int *maxlen)
+void Generator::getFreq(char *buffer, int *maxlen)
 {
     strcpy(buffer,"FREQ?\r\n");
     *maxlen=strlen(buffer);
 }
-void Generator::SetFreq(char *buffer, int *maxlen, char *freq)
+void Generator::setFreq(char *buffer, int *maxlen, char *freq)
 {
     char sautligne[2];
     strcpy(sautligne,"\r\n");

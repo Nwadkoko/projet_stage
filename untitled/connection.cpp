@@ -33,6 +33,24 @@ void Connection::setPort(QString newPort)
     qDebug() << m_port;
 }
 
+int Connection::connection()
+{
+    int test;
+    const char* serverName = m_ipAddress.toStdString().c_str();
+    unsigned short port = m_port.toUShort();
+    m_sockClient = socket(AF_INET,SOCK_STREAM,0);
+    m_serverHostEnt = gethostbyname(serverName);
+    m_addrSockServer.sin_family = AF_INET;
+    m_addrSockServer.sin_port = htons(port);
+    memcpy(&m_addrSockServer.sin_addr,m_serverHostEnt->h_addr,m_serverHostEnt->h_length);
+    test = ::connect(m_sockClient, (struct sockaddr*)&m_addrSockServer, sizeof(m_addrSockServer));
+    if(test != 0)
+    {
+        qDebug() << test;
+    }
+    return test;
+}
+
 int Connection::connection(unsigned short port, char *serverName)
 {
     int test;
